@@ -1,0 +1,239 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gusto Mo Ba Ako?</title>
+    <style>
+        body {
+            background-color: #ffe4e1; /* Light pink */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #ff69b4; /* Hot pink */
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            border: 5px solid #ff1493; /* Deep pink */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff0f5; /* Lavender blush */
+            max-width: 500px;
+        }
+        h1, p {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #ff1493; /* Deep pink */
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #ff69b4; /* Hot pink */
+        }
+        .hidden {
+            display: none;
+        }
+        .emoji-pop {
+            font-size: 50px;
+            animation: pop 0.5s ease-in-out;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Warning -->
+    <div class="container" id="warning">
+        <p>⚠️ Basahin ng maigi bago i-click ang "Next"! ⚠️</p>
+        <button id="warningBtn">Okay, Got It!</button>
+    </div>
+
+    <!-- Part 1: Audio Prompt -->
+    <div class="container hidden" id="part1">
+        <p>I-play ang music:</p>
+        <iframe id="audio" width="300" height="60" src="https://vocaroo.com/embed/1btkHjU4qYBZ" frameborder="0" allow="autoplay"></iframe>
+        <div>
+            <button id="nextPart1Btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Part 2: Message -->
+    <div class="container hidden" id="part2">
+        <p>Sabi ng parents mo they want the best for you, kaya nandito ako for YOU. 😊</p>
+        <div>
+            <button id="nextPart2Btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Part 3: Elbow Joke -->
+    <div class="container hidden" id="part3">
+        <p>Kung ang Tagalog ng "elbow" ay "siko," bat hindi nalang ako? 🤔</p>
+        <div>
+            <button id="nextPart3Btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Part 4: Invite -->
+    <div class="container hidden" id="part4">
+        <p>Pero kung gusto mo talaga makita yung para sayo... magkita na tayo. 😉</p>
+        <div>
+            <button id="nextPart4Btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Part 5: Question -->
+    <div class="container hidden" id="part5">
+        <h1>Gusto mo ba ako ____? ❤️</h1>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <!-- Part 6: Kapwing Video -->
+    <div class="container hidden" id="part6">
+        <div style="height: 0; padding-bottom: calc(56.25%); position:relative; width: 100%;">
+            <iframe allow="autoplay; gyroscope;" allowfullscreen height="100%" referrerpolicy="strict-origin" 
+                    src="https://www.kapwing.com/e/67690900153c98f44373df3e" 
+                    style="border:0; height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%" 
+                    title="Embedded content made on Kapwing" width="100%">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Part 7: Special Message -->
+    <div class="container hidden" id="part7">
+        <p>Talo man sa color game, panalo naman sa puso mo! ❤️</p>
+        <button id="nextPart7Btn">Next</button>
+    </div>
+
+    <!-- Part 8: Restart the Website -->
+    <div class="container hidden" id="part8">
+        <p>Thank you dahil gusto mo din ako! ❤️</p>
+        <button id="restartBtn">Restart</button>
+    </div>
+
+    <script>
+        // Function to dismiss the warning and show the first part
+        document.getElementById('warningBtn').addEventListener('click', function() {
+            document.getElementById('warning').classList.add('hidden');
+            document.getElementById('part1').classList.remove('hidden');
+        });
+
+        // Show the next part and create emoji pop
+        document.getElementById('nextPart1Btn').addEventListener('click', function() {
+            document.getElementById('part1').classList.add('hidden');
+            document.getElementById('part2').classList.remove('hidden');
+            showEmoji('😊');
+        });
+
+        document.getElementById('nextPart2Btn').addEventListener('click', function() {
+            document.getElementById('part2').classList.add('hidden');
+            document.getElementById('part3').classList.remove('hidden');
+            showEmoji('🤔');
+        });
+
+        document.getElementById('nextPart3Btn').addEventListener('click', function() {
+            document.getElementById('part3').classList.add('hidden');
+            document.getElementById('part4').classList.remove('hidden');
+            showEmoji('😉');
+        });
+
+        document.getElementById('nextPart4Btn').addEventListener('click', function() {
+            document.getElementById('part4').classList.add('hidden');
+            document.getElementById('part5').classList.remove('hidden');
+            showEmoji('❤️');
+        });
+
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            showBuoNaPaskoKo();
+        });
+
+        document.getElementById('noBtn').addEventListener('click', function() {
+            showVideo();
+        });
+
+        // Show "Buo na Pasko ko" alert and hearts for "Yes"
+        function showBuoNaPaskoKo() {
+            document.getElementById('part5').classList.add('hidden');
+            alert("Buo na Pasko ko");
+            popHearts(); // Show hearts animation
+            document.getElementById('part7').classList.remove('hidden'); // Show part 7 with message
+        }
+
+        // Show video for "No"
+        function showVideo() {
+            const audioIframe = document.getElementById('audio');
+            const audioSrc = audioIframe.src;
+            audioIframe.src = '';
+            setTimeout(() => audioIframe.src = audioSrc, 0); // Reset the source to stop playback
+
+            document.getElementById('part5').classList.add('hidden');
+            document.getElementById('part6').classList.remove('hidden');
+        }
+
+        // Pop-up hearts emoji animation
+        function popHearts() {
+            for (let i = 0; i < 10; i++) {
+                createEmojiPop('❤️', 100, 100, window.innerWidth, window.innerHeight, 0.5, 1.5);
+            }
+        }
+
+        // Create a floating emoji element
+        function createEmojiPop(emoji, minScale, maxScale, maxX, maxY, minScale, maxScale) {
+            const emojiElement = document.createElement('div');
+            emojiElement.className = 'emoji-pop';
+            emojiElement.innerText = emoji;
+            document.body.appendChild(emojiElement);
+
+            const scale = Math.random() * (maxScale - minScale) + minScale;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            emojiElement.style.left = `${x}px`;
+            emojiElement.style.top = `${y}px`;
+            emojiElement.style.transform = `scale(${scale})`;
+
+            setTimeout(() => emojiElement.remove(), 1000); // Remove after animation
+        }
+
+        // Display an emoji at the center
+        function showEmoji(emoji) {
+            const emojiElement = document.createElement('div');
+            emojiElement.className = 'emoji-pop';
+            emojiElement.innerText = emoji;
+            document.body.appendChild(emojiElement);
+            setTimeout(() => emojiElement.remove(), 1000);
+        }
+
+        // Proceed to Part 8 after Part 7
+        document.getElementById('nextPart7Btn').addEventListener('click', function() {
+            document.getElementById('part7').classList.add('hidden');
+            document.getElementById('part8').classList.remove('hidden');
+        });
+
+        // Restart the website
+        document.getElementById('restartBtn').addEventListener('click', function() {
+            location.reload(); // Refresh the page to restart
+        });
+    </script>
+</body>
+</html>
